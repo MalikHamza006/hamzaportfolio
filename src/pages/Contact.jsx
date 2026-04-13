@@ -13,7 +13,6 @@ export default function Contact() {
     setIsSubmitting(true);
     setStatus({ type: 'info', message: 'Sending your message...' });
     
-    // Simulate API call
     setTimeout(() => {
       setStatus({ 
         type: 'success', 
@@ -31,24 +30,48 @@ export default function Contact() {
   };
 
   const contactInfo = [
-    { icon: FaWhatsapp, label: 'WhatsApp', value: '+92 316 0442304', color: '#25D366', link: 'https://wa.me/923160442304' },
-    { icon: FaEnvelope, label: 'Email', value: 'hama.yousuf@example.com', color: '#c8ff00', link: 'mailto:hama.yousuf@example.com' },
-    { icon: FaPhoneAlt, label: 'Phone', value: '+92 316 0442304', color: '#c8ff00', link: 'tel:+923160442304' },
-    { icon: FaMapMarkerAlt, label: 'Location', value: 'Pakistan — Available Worldwide', color: '#c8ff00', link: null },
-    { icon: FaClock, label: 'Response Time', value: 'Within 24 hours', color: '#c8ff00', link: null }
+    { icon: FaWhatsapp, label: 'WhatsApp', value: '+92 316 0442304', link: 'https://wa.me/923160442304' },
+    { icon: FaEnvelope, label: 'Email', value: 'hamza.malik@example.com', link: 'mailto:hamza.malik@example.com' },
+    { icon: FaPhoneAlt, label: 'Phone', value: '+92 316 0442304', link: 'tel:+923160442304' },
+    { icon: FaMapMarkerAlt, label: 'Location', value: 'Pakistan — Available Worldwide', link: null },
+    { icon: FaClock, label: 'Response Time', value: 'Within 24 hours', link: null }
+  ];
+
+  const serviceOptions = [
+    'Landing Page / Portfolio',
+    'Full-Stack Web App',
+    'API Development',
+    'UI/UX to Code',
+    'Performance Optimization',
+    '1-on-1 Mentorship'
+  ];
+
+  const budgetOptions = [
+    'Under $500',
+    '$500 – $1,500',
+    '$1,500 – $5,000',
+    '$5,000+',
+    'Mentorship / Hourly'
   ];
 
   return (
-    <section id="contact" className="py-24 px-6 md:px-16 bg-gradient-to-b from-transparent to-white/5">
-      <div className="container mx-auto max-w-6xl">
+    <section id="contact" className="relative py-24 px-6 md:px-16 overflow-hidden">
+      
+      {/* Simple Glassmorphism Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a0f] via-[#0a0e27] to-[#0f172a]"></div>
+      
+      {/* Simple Glass Grid Pattern */}
+      <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+
+      <div className="container mx-auto max-w-6xl relative z-10">
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-3 text-xs font-semibold tracking-[0.15em] uppercase text-[#c8ff00] mb-4">
-            <span className="w-8 h-px bg-[#c8ff00]"></span>
+          <div className="inline-flex items-center gap-3 text-xs font-semibold tracking-[0.15em] uppercase text-cyan-400 mb-4">
+            <span className="w-8 h-px bg-cyan-400"></span>
             Get In Touch
-            <span className="w-8 h-px bg-[#c8ff00]"></span>
+            <span className="w-8 h-px bg-cyan-400"></span>
           </div>
-          <h2 className="font-['Syne'] text-4xl md:text-5xl font-extrabold">
-            Let's Work <span className="text-[#c8ff00]">Together</span>
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-4">
+            Let's Work <span className="text-cyan-400">Together</span>
           </h2>
           <p className="text-white/50 max-w-2xl mx-auto mt-4">
             Have a project in mind? I'm just one message away. Let's create something amazing!
@@ -58,18 +81,18 @@ export default function Contact() {
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Info */}
           <div className="space-y-6">
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8">
+            <div className="backdrop-blur-sm bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8">
               <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
               <div className="space-y-4">
                 {contactInfo.map((item, i) => (
                   <div key={i} className="flex items-center gap-4 p-3 rounded-xl hover:bg-white/5 transition-colors group">
-                    <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#c8ff00]/10 transition-colors">
-                      <item.icon size={20} className="text-[#c8ff00]" />
+                    <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-cyan-500/20 transition-colors">
+                      <item.icon size={20} className="text-cyan-400" />
                     </div>
                     <div className="flex-1">
                       <p className="text-xs text-white/40 uppercase tracking-wider">{item.label}</p>
                       {item.link ? (
-                        <a href={item.link} className="text-white hover:text-[#c8ff00] transition-colors font-medium">
+                        <a href={item.link} className="text-white hover:text-cyan-400 transition-colors font-medium">
                           {item.value}
                         </a>
                       ) : (
@@ -82,7 +105,7 @@ export default function Contact() {
             </div>
             
             {/* Availability Badge */}
-            <div className="bg-gradient-to-r from-[#c8ff00]/10 to-[#ff4d6d]/10 border border-[#c8ff00]/20 rounded-2xl p-6 text-center">
+            <div className="backdrop-blur-sm bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
               <div className="flex items-center justify-center gap-2 mb-2">
                 <span className="relative flex h-3 w-3">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
@@ -95,7 +118,7 @@ export default function Contact() {
           </div>
 
           {/* Contact Form */}
-          <div className="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8">
+          <div className="backdrop-blur-sm bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8">
             <form onSubmit={handleSubmit} className="space-y-5">
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
@@ -106,7 +129,7 @@ export default function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-white focus:border-[#c8ff00]/50 focus:outline-none transition-colors"
+                    className="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-white focus:border-cyan-400/50 focus:outline-none transition-colors placeholder:text-white/30"
                     placeholder="John Doe"
                   />
                 </div>
@@ -118,7 +141,7 @@ export default function Contact() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-white focus:border-[#c8ff00]/50 focus:outline-none transition-colors"
+                    className="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-white focus:border-cyan-400/50 focus:outline-none transition-colors placeholder:text-white/30"
                     placeholder="john@example.com"
                   />
                 </div>
@@ -131,15 +154,14 @@ export default function Contact() {
                     name="service"
                     value={formData.service}
                     onChange={handleChange}
-                    className="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-white focus:border-[#c8ff00]/50 focus:outline-none"
+                    className="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-white focus:border-cyan-400/50 focus:outline-none cursor-pointer"
                   >
-                    <option value="">Select a service...</option>
-                    <option>Landing Page / Portfolio</option>
-                    <option>Full-Stack Web App</option>
-                    <option>API Development</option>
-                    <option>UI/UX to Code</option>
-                    <option>Performance Optimization</option>
-                    <option>1-on-1 Mentorship</option>
+                    <option value="" disabled className="bg-[#0a0a0f] text-white/60">Select a service...</option>
+                    {serviceOptions.map((option, idx) => (
+                      <option key={idx} value={option} className="bg-[#0a0a0f] text-white py-2">
+                        {option}
+                      </option>
+                    ))}
                   </select>
                 </div>
                 <div>
@@ -148,14 +170,14 @@ export default function Contact() {
                     name="budget"
                     value={formData.budget}
                     onChange={handleChange}
-                    className="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-white focus:border-[#c8ff00]/50 focus:outline-none"
+                    className="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-white focus:border-cyan-400/50 focus:outline-none cursor-pointer"
                   >
-                    <option value="">Select range...</option>
-                    <option>Under $500</option>
-                    <option>$500 – $1,500</option>
-                    <option>$1,500 – $5,000</option>
-                    <option>$5,000+</option>
-                    <option>Mentorship / Hourly</option>
+                    <option value="" disabled className="bg-[#0a0a0f] text-white/60">Select range...</option>
+                    {budgetOptions.map((option, idx) => (
+                      <option key={idx} value={option} className="bg-[#0a0a0f] text-white py-2">
+                        {option}
+                      </option>
+                    ))}
                   </select>
                 </div>
               </div>
@@ -168,7 +190,7 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                   rows={5}
-                  className="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-white focus:border-[#c8ff00]/50 focus:outline-none transition-colors resize-none"
+                  className="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-white focus:border-cyan-400/50 focus:outline-none transition-colors resize-none placeholder:text-white/30"
                   placeholder="Tell me about your project, goals, and timeline..."
                 />
               </div>
@@ -176,14 +198,14 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-[#c8ff00] text-black py-4 rounded-lg font-bold uppercase tracking-wider hover:bg-white transition-all hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white py-4 rounded-lg font-bold uppercase tracking-wider hover:shadow-lg hover:shadow-cyan-500/50 transition-all hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? 'Sending...' : 'Send Message →'}
               </button>
               
               {status.message && (
                 <div className={`p-4 rounded-lg text-sm ${
-                  status.type === 'success' ? 'bg-green-500/20 text-green-400 border border-green-500/30' : 'bg-[#c8ff00]/10 text-[#c8ff00]'
+                  status.type === 'success' ? 'bg-green-500/20 text-green-400 border border-green-500/30' : 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/30'
                 }`}>
                   {status.message}
                 </div>
@@ -192,6 +214,19 @@ export default function Contact() {
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        .bg-grid-pattern {
+          background-image: 
+            linear-gradient(rgba(6, 182, 212, 0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(6, 182, 212, 0.1) 1px, transparent 1px);
+          background-size: 50px 50px;
+        }
+        
+        select option {
+          padding: 10px;
+        }
+      `}</style>
     </section>
   );
 }

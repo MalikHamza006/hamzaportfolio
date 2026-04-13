@@ -9,32 +9,85 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="services" className="py-24 px-6 md:px-16">
-      <div className="reveal">
-        <div className="inline-flex items-center gap-3 text-xs font-semibold tracking-[0.15em] uppercase text-[#c8ff00] mb-5">
-          <span className="w-8 h-px bg-[#c8ff00]"></span>
-          What I Offer
+    <section id="services" className="relative py-24 px-6 md:px-16 overflow-hidden">
+      
+      {/* Simple Glassmorphism Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a0f] via-[#0a0e27] to-[#0f172a]"></div>
+      
+      {/* Simple Glass Grid Pattern */}
+      <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+
+      <div className="container mx-auto max-w-6xl relative z-10">
+        
+        {/* Header */}
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-3 text-xs font-semibold tracking-[0.15em] uppercase text-cyan-400 mb-4">
+            <span className="w-8 h-px bg-cyan-400"></span>
+            What I Offer
+            <span className="w-8 h-px bg-cyan-400"></span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-extrabold">
+            End-to-End <br />Web <span className="text-cyan-400">Creation.</span>
+          </h2>
         </div>
-        <h2 className="font-['Syne'] text-[clamp(2.5rem,4vw,3.8rem)] font-extrabold leading-tight tracking-[-0.03em]">
-          End-to-End <br />Web Creation.
-        </h2>
+
+        {/* Services Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+          {services.map((service, i) => (
+            <div 
+              key={i} 
+              className="group backdrop-blur-sm bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8 transition-all duration-300 hover:bg-white/10 hover:border-cyan-400/30 hover:transform hover:-translate-y-2"
+            >
+              {/* Service Number */}
+              <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white/20 to-white/5 mb-4 font-mono">
+                {service.num}
+              </div>
+              
+              {/* Service Icon */}
+              <span className="text-4xl mb-4 block group-hover:scale-110 transition-transform duration-300">
+                {service.icon}
+              </span>
+              
+              {/* Service Title */}
+              <h3 className="text-xl font-bold mb-3 group-hover:text-cyan-400 transition-colors duration-300">
+                {service.title}
+              </h3>
+              
+              {/* Service Description */}
+              <p className="text-white/50 text-sm leading-relaxed mb-6">
+                {service.desc}
+              </p>
+              
+              {/* Arrow Icon */}
+              <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/50 group-hover:bg-gradient-to-r group-hover:from-cyan-500 group-hover:to-blue-500 group-hover:border-transparent group-hover:text-white group-hover:translate-x-1 transition-all duration-300">
+                →
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* CTA Section */}
+        <div className="text-center mt-16 pt-8 border-t border-white/10">
+          <p className="text-white/60 mb-4">Need a custom solution?</p>
+          <button 
+            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full text-white font-semibold hover:shadow-lg hover:shadow-cyan-500/50 transition-all duration-300 hover:scale-105"
+          >
+            Let's Discuss Your Project
+            <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
+          </button>
+        </div>
+        
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/10 mt-16">
-        {services.map((service, i) => (
-          <div key={i} className={`reveal delay-${Math.min(i % 3 + 1, 4)} bg-black p-8 md:p-10 transition-colors hover:bg-white/5 group cursor-default`}>
-            <div className="font-['Syne'] text-5xl font-extrabold text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.06)] mb-6 group-hover:[-webkit-text-stroke-color:rgba(200,255,0,0.2)] transition-colors">
-              {service.num}
-            </div>
-            <span className="text-3xl mb-4 block">{service.icon}</span>
-            <h3 className="font-['Syne'] text-xl font-bold mb-2">{service.title}</h3>
-            <p className="text-[rgba(242,240,235,0.45)] text-sm leading-relaxed">{service.desc}</p>
-            <div className="mt-6 w-10 h-10 border border-white/10 flex items-center justify-center text-lg text-[rgba(242,240,235,0.45)] group-hover:bg-[#c8ff00] group-hover:border-[#c8ff00] group-hover:text-black group-hover:translate-x-1 group-hover:-translate-y-1 transition-all">
-              →
-            </div>
-          </div>
-        ))}
-      </div>
+      <style jsx>{`
+        .bg-grid-pattern {
+          background-image: 
+            linear-gradient(rgba(6, 182, 212, 0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(6, 182, 212, 0.1) 1px, transparent 1px);
+          background-size: 50px 50px;
+        }
+      `}</style>
     </section>
   );
 }

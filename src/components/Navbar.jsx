@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { FaSun, FaMoon } from 'react-icons/fa';
+import { FaSun, FaMoon, FaBars, FaTimes } from 'react-icons/fa';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -12,9 +12,19 @@ export default function Navbar() {
     
     // Load theme preference
     const savedTheme = localStorage.getItem('theme');
+    
     if (savedTheme === 'light') {
       setIsDark(false);
       document.body.classList.add('light-mode');
+      document.body.classList.remove('dark-mode');
+    } else if (savedTheme === 'dark') {
+      setIsDark(true);
+      document.body.classList.add('dark-mode');
+      document.body.classList.remove('light-mode');
+    } else {
+      // Default to dark mode
+      setIsDark(true);
+      document.body.classList.add('dark-mode');
     }
     
     return () => window.removeEventListener('scroll', handleScroll);
@@ -22,11 +32,13 @@ export default function Navbar() {
 
   const toggleTheme = () => {
     if (isDark) {
+      // Switch to light mode
       document.body.classList.remove('dark-mode');
       document.body.classList.add('light-mode');
       localStorage.setItem('theme', 'light');
       setIsDark(false);
     } else {
+      // Switch to dark mode
       document.body.classList.remove('light-mode');
       document.body.classList.add('dark-mode');
       localStorage.setItem('theme', 'dark');
@@ -35,15 +47,20 @@ export default function Navbar() {
   };
 
   const scrollTo = (id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
     setMobileMenuOpen(false);
   };
 
   return (
-    <nav className={scrolled ? 'scrolled' : ''}>
-      <div className="container mx-auto flex justify-between items-center">
-        <div className="nav-logo cursor-pointer" onClick={() => scrollTo('home')}>
-          HM<span className="text-[#06b6d4]">.</span>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      scrolled ? 'bg-black/80 backdrop-blur-xl shadow-lg' : 'bg-transparent'
+    }`}>
+      <div className="container mx-auto px-6 py-4 flex justify-between items-center">
+        <div className="nav-logo cursor-pointer text-2xl font-bold" onClick={() => scrollTo('home')}>
+          HM<span className="text-cyan-500">.</span>
         </div>
         
         {/* Desktop Menu */}
@@ -52,7 +69,7 @@ export default function Navbar() {
             <li key={item}>
               <button
                 onClick={() => scrollTo(item)}
-                className="text-white/60 text-sm font-medium uppercase tracking-wider hover:text-cyan-400 transition-all duration-300"
+                className="text-white/70 hover:text-cyan-400 text-sm font-medium uppercase tracking-wider transition-all duration-300"
               >
                 {item}
               </button>
@@ -64,7 +81,7 @@ export default function Navbar() {
           {/* Theme Toggle Button */}
           <button
             onClick={toggleTheme}
-            className="glass w-10 h-10 rounded-full flex items-center justify-center hover:scale-110 transition-all duration-300"
+            className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center hover:scale-110 transition-all duration-300 hover:bg-white/20"
             aria-label="Toggle theme"
           >
             {isDark ? (
@@ -77,39 +94,41 @@ export default function Navbar() {
           {/* Hire Me Button */}
           <button
             onClick={() => scrollTo('contact')}
-            className="btn-primary hidden md:block"
+            className="hidden md:block px-6 py-2 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-full font-semibold hover:shadow-lg hover:shadow-cyan-500/50 transition-all duration-300"
           >
             Hire Me →
           </button>
           
           {/* Mobile Menu Button */}
           <button 
-            className="md:hidden text-white text-2xl glass w-10 h-10 rounded-full flex items-center justify-center"
+            className="md:hidden w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
-            ☰
+            {mobileMenuOpen ? <FaTimes /> : <FaBars />}
           </button>
         </div>
       </div>
       
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 glass mt-2 p-4 rounded-2xl animate__animated animate__fadeInDown">
-          {['home', 'skills', 'services', 'projects', 'mentorship', 'contact'].map((item) => (
+        <div className="md:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-xl border-t border-white/10 animate-slideDown">
+          <div className="container mx-auto px-6 py-4">
+            {['home', 'skills', 'services', 'projects', 'mentorship', 'contact'].map((item) => (
+              <button
+                key={item}
+                onClick={() => scrollTo(item)}
+                className="block w-full text-left py-3 text-white/80 hover:text-cyan-400 transition-colors uppercase tracking-wider"
+              >
+                {item}
+              </button>
+            ))}
             <button
-              key={item}
-              onClick={() => scrollTo(item)}
-              className="block w-full text-left py-3 text-white/80 hover:text-cyan-400 transition-colors"
+              onClick={() => scrollTo('contact')}
+              className="w-full mt-4 px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-full font-semibold"
             >
-              {item.toUpperCase()}
+              Hire Me →
             </button>
-          ))}
-          <button
-            onClick={() => scrollTo('contact')}
-            className="btn-primary w-full mt-3"
-          >
-            Hire Me →
-          </button>
+          </div>
         </div>
       )}
     </nav>
