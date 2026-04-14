@@ -133,8 +133,8 @@ export default function Home() {
               
               {/* Stats Badge */}
               <div className="absolute -bottom-16 left-1/2 transform -translate-x-1/2 bg-black/60 backdrop-blur-md rounded-full px-6 py-2 border border-white/20 whitespace-nowrap">
-                <span className="text-cyan-400 font-bold">5+</span>
-                <span className="text-white ml-2">Years Experience</span>
+                <span className="text-cyan-400 font-bold"> I can't speak</span>
+                <span className="text-white ml-2">  my skill tells you who i'm </span>
               </div>
               
             </div>

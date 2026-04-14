@@ -13,10 +13,10 @@ export default function Mentorship() {
       <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
 
       <div className="container mx-auto max-w-6xl relative z-10">
-        <div className="grid md:grid-cols-2 gap-16">
+        <div className="grid md:grid-cols-2 gap-16 items-stretch">
           
           {/* LEFT CONTENT */}
-          <div>
+          <div className="flex flex-col">
             <div className="inline-flex items-center gap-3 text-xs font-semibold tracking-[0.15em] uppercase text-cyan-400 mb-5">
               <span className="w-8 h-px bg-cyan-400"></span>
               Grow With Me
@@ -45,32 +45,34 @@ export default function Mentorship() {
             </div>
           </div>
 
-          {/* RIGHT CONTENT - CTA CARD */}
-          <div className="backdrop-blur-sm bg-white/5 border border-white/10 rounded-2xl p-8 md:p-10 relative hover:border-cyan-400/30 transition-all duration-300">
+          {/* RIGHT CONTENT - CTA CARD (Equal spacing) */}
+          <div className="backdrop-blur-sm bg-white/5 border border-white/10 rounded-2xl p-8 md:p-10 relative hover:border-cyan-400/30 transition-all duration-300 flex flex-col items-center justify-center text-center h-full">
             <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-t-2xl"></div>
             
-            <h3 className="text-3xl md:text-4xl font-extrabold mb-4 leading-tight">
-              Ready to Level Up <span className="text-cyan-400">Fast?</span>
-            </h3>
-            
-            <p className="text-white/60 leading-relaxed mb-6">
-              I take a limited number of mentorship students at a time. Each session is personalized, focused, and results-driven. Previous students have gone from zero to landing their first job in under 6 months.
-            </p>
-            
-            <div className="flex items-center gap-3 mb-8">
-              <span className="relative flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-              </span>
-              <span className="text-white/60 text-sm">Currently accepting 3 new mentorship students</span>
+            <div className="w-full max-w-md mx-auto space-y-8">
+              <h3 className="text-3xl md:text-4xl font-extrabold leading-tight">
+                Ready to Level Up <span className="text-cyan-400">Fast?</span>
+              </h3>
+              
+              <p className="text-white/60 leading-relaxed">
+                I take a limited number of mentorship students at a time. Each session is personalized, focused, and results-driven. Previous students have gone from zero to landing their first job in under 6 months.
+              </p>
+              
+              <div className="flex items-center justify-center gap-3">
+                <span className="relative flex h-3 w-3">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                </span>
+                <span className="text-white/60 text-sm">Currently accepting 3 new mentorship students</span>
+              </div>
+              
+              <button 
+                onClick={() => scrollTo('contact')} 
+                className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white py-4 rounded-xl font-bold uppercase tracking-wider hover:shadow-lg hover:shadow-cyan-500/50 transition-all duration-300 hover:scale-[1.02]"
+              >
+                Apply for Mentorship →
+              </button>
             </div>
-            
-            <button 
-              onClick={() => scrollTo('contact')} 
-              className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white py-4 rounded-xl font-bold uppercase tracking-wider hover:shadow-lg hover:shadow-cyan-500/50 transition-all duration-300 hover:scale-[1.02]"
-            >
-              Apply for Mentorship →
-            </button>
           </div>
           
         </div>

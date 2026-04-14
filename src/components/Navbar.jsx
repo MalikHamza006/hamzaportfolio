@@ -47,9 +47,14 @@ export default function Navbar() {
   };
 
   const scrollTo = (id) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (id === 'home') {
+      // Scroll to top of page for home
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }
     setMobileMenuOpen(false);
   };
@@ -91,10 +96,10 @@ export default function Navbar() {
             )}
           </button>
           
-          {/* Hire Me Button */}
+          {/* Hire Me Button - Added 5px left and right padding */}
           <button
             onClick={() => scrollTo('contact')}
-            className="hidden md:block px-6 py-2 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-full font-semibold hover:shadow-lg hover:shadow-cyan-500/50 transition-all duration-300"
+            className="hidden md:block px-[5px] py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-full font-semibold hover:shadow-lg hover:shadow-cyan-500/50 transition-all duration-300"
           >
             Hire Me →
           </button>
@@ -124,7 +129,7 @@ export default function Navbar() {
             ))}
             <button
               onClick={() => scrollTo('contact')}
-              className="w-full mt-4 px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-full font-semibold"
+              className="w-full mt-4 px-[5px] py-4 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-full font-semibold"
             >
               Hire Me →
             </button>

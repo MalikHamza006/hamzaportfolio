@@ -217,11 +217,15 @@ export default function Chatbot() {
         </div>
       )}
       
-      <div className="chatbot-toggle w-14 h-14 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center cursor-pointer shadow-lg hover:scale-110 transition-all duration-300" onClick={() => {
-        setIsOpen(!isOpen);
-        if (!isOpen) localStorage.removeItem('chatClosed');
-      }}>
-       <FaHeadset className="text-white text-3xl" />
+      {/* Larger Chatbot Button - Increased size */}
+      <div 
+        className="chatbot-toggle w-20 h-20 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center cursor-pointer shadow-lg hover:scale-110 transition-all duration-300" 
+        onClick={() => {
+          setIsOpen(!isOpen);
+          if (!isOpen) localStorage.removeItem('chatClosed');
+        }}
+      >
+        <FaHeadset className="text-white text-5xl" />
       </div>
       
       <style jsx>{`
