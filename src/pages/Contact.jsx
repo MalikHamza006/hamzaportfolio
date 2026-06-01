@@ -8,26 +8,41 @@ export default function Contact() {
   const [status, setStatus] = useState({ type: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setStatus({ type: 'info', message: 'Sending your message...' });
-    
-    setTimeout(() => {
-      setStatus({ 
-        type: 'success', 
-        message: `✓ Message received, ${formData.name}! I'll get back to you within 24 hours.` 
-      });
-      setFormData({ name: '', email: '', service: '', budget: '', message: '' });
-      setIsSubmitting(false);
-      
-      setTimeout(() => setStatus({ type: '', message: '' }), 5000);
-    }, 1500);
-  };
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  setIsSubmitting(true);
+  setStatus({ type: 'info', message: 'Sending your message...' });
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  try {
+    const res = await fetch('http://127.0.0.1:8000/api/contact', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      setStatus({
+        type: 'success',
+        message: `✓ Message received, ${formData.name}! I'll reply within 24 hours.`,
+      });
+
+      setFormData({ name: '', email: '', service: '', budget: '', message: '' });
+    }
+  } catch (error) {
+    setStatus({
+      type: 'error',
+      message: 'Something went wrong. Please try again.',
+    });
+  }
+
+  setIsSubmitting(false);
+
+  setTimeout(() => setStatus({ type: '', message: '' }), 5000);
+};
 
   const contactInfo = [
     { icon: FaWhatsapp, label: 'WhatsApp', value: '+92 316 0442304', link: 'https://wa.me/923160442304' },
